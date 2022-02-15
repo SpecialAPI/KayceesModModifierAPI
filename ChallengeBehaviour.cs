@@ -6,9 +6,9 @@ using System.Text;
 
 namespace KayceesModModifierAPI
 {
-    public class ChallengeBehavior : NonCardTriggerReceiver
+    public class ChallengeBehaviour : NonCardTriggerReceiver
     {
-        private static List<ChallengeBehavior> instances;
+        private static List<ChallengeBehaviour> instances;
         public NewChallenge challenge;
 
 		public void Start()
@@ -24,7 +24,7 @@ namespace KayceesModModifierAPI
 			Instances.Remove(this);
         }
 
-		public static List<ChallengeBehavior> FindInstancesOfType(AscensionChallenge type)
+		public static List<ChallengeBehaviour> FindInstancesOfType(AscensionChallenge type)
         {
 			return Instances.FindAll((x) => x.challenge.challenge.challengeType == type);
 		}
@@ -39,7 +39,7 @@ namespace KayceesModModifierAPI
 			return CountInstancesOfType(type) > 0;
         }
 
-        public static List<ChallengeBehavior> Instances
+        public static List<ChallengeBehaviour> Instances
         {
             get
             {
@@ -50,8 +50,8 @@ namespace KayceesModModifierAPI
 
 		public static void DestroyAllInstances()
         {
-			List<ChallengeBehavior> instance = Instances;
-			foreach (ChallengeBehavior ins in instance)
+			List<ChallengeBehaviour> instance = Instances;
+			foreach (ChallengeBehaviour ins in instance)
             {
 				if(ins != null && ins.gameObject != null)
 				{
@@ -65,7 +65,7 @@ namespace KayceesModModifierAPI
         {
             if(instances == null)
             {
-                instances = new List<ChallengeBehavior>();
+                instances = new List<ChallengeBehaviour>();
             }
 			instances.RemoveAll((x) => x == null || x.gameObject == null);
         }

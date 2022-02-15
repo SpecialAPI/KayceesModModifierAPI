@@ -11,7 +11,7 @@ namespace KayceesModModifierAPI
     {
 		public static IEnumerator Postfix(IEnumerator result)
 		{
-			foreach(ChallengeBehavior behav in ChallengeBehavior.Instances)
+			foreach(ChallengeBehaviour behav in ChallengeBehaviour.Instances)
             {
 				if(behav != null && behav.RespondToPreCleanup())
                 {
@@ -19,14 +19,14 @@ namespace KayceesModModifierAPI
                 }
             }
 			yield return result;
-			foreach (ChallengeBehavior behav in ChallengeBehavior.Instances)
+			foreach (ChallengeBehaviour behav in ChallengeBehaviour.Instances)
 			{
 				if (behav != null && behav.RespondToPostCleanup())
 				{
 					yield return behav.OnPostCleanup();
 				}
 			}
-			ChallengeBehavior.DestroyAllInstances();
+			ChallengeBehaviour.DestroyAllInstances();
 			yield break;
 		}
 	}

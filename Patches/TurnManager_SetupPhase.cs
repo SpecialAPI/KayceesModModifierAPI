@@ -13,21 +13,21 @@ namespace KayceesModModifierAPI
     {
         public static IEnumerator Postfix(IEnumerator result, TurnManager __instance)
         {
-            ChallengeBehavior.DestroyAllInstances();
+            ChallengeBehaviour.DestroyAllInstances();
             if (SaveFile.IsAscension && AscensionSaveData.Data != null && AscensionSaveData.Data.activeChallenges != null)
             {
                 foreach (AscensionChallenge challenge in AscensionSaveData.Data.activeChallenges)
                 {
                     NewChallenge nc = NewChallenge.allChallenges.Find((x) => x != null && x.challenge != null && x.challenge.challengeType == challenge);
-                    if (nc != null && nc.challengeHandlerType != null && nc.challengeHandlerType.IsSubclassOf(typeof(ChallengeBehavior)))
+                    if (nc != null && nc.challengeHandlerType != null && nc.challengeHandlerType.IsSubclassOf(typeof(ChallengeBehaviour)))
                     {
                         GameObject challengehandler = new GameObject(nc.challenge.name + " Challenge Handler");
-                        ChallengeBehavior behav = challengehandler.AddComponent(nc.challengeHandlerType) as ChallengeBehavior;
+                        ChallengeBehaviour behav = challengehandler.AddComponent(nc.challengeHandlerType) as ChallengeBehaviour;
                         if (behav != null)
                         {
                             GlobalTriggerHandler.Instance?.RegisterNonCardReceiver(behav);
                             behav.challenge = nc;
-                            ChallengeBehavior.Instances.Add(behav);
+                            ChallengeBehaviour.Instances.Add(behav);
                             if (behav.RespondToPreBattleStart())
                             {
                                 yield return behav.OnPreBattleStart();
@@ -37,7 +37,7 @@ namespace KayceesModModifierAPI
                 }
             }
             yield return result;
-            foreach (ChallengeBehavior behav in ChallengeBehavior.Instances)
+            foreach (ChallengeBehaviour behav in ChallengeBehaviour.Instances)
             {
                 if (behav != null && behav.RespondToBattleStart())
                 {
